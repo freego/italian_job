@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    errors:
+        codice_fiscale:
+            empty: cannot be empty
+            invalid_format: is invalid
