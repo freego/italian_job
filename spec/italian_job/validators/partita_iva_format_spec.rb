@@ -18,7 +18,7 @@ describe "partita_iva_validator" do
 
     it "returns an empty error" do
       @user.should_not be_valid
-      @user.errors[:partita_iva].should == [I18n.translate("activerecord.errors.partita_iva.empty")]
+      @user.errors[:partita_iva].should == [I18n.t("activerecord.errors.partita_iva.empty")]
     end
 
   end
@@ -45,7 +45,7 @@ describe "partita_iva_validator" do
       it "returns an invalid_format error" do
         @user.partita_iva = code
         @user.should_not be_valid
-        @user.errors[:partita_iva].should == [I18n.translate("activerecord.errors.partita_iva.invalid_format")]
+        @user.errors[:partita_iva].should == [I18n.t("activerecord.errors.partita_iva.invalid_format")]
       end
 
 

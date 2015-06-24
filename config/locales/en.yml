@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    errors:
+      codice_fiscale:
+        invalid_format: invalid format
+      partita_iva:
+        invalid_format: invalid format

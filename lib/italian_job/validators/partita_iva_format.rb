@@ -1,26 +1,20 @@
 module ActiveModel
   module Validations
     class PartitaIvaFormatValidator < ActiveModel::EachValidator
-      REGEX=Regexp.compile("^[0-9]{11}$")
-
+      REGEX = Regexp.compile("^[0-9]{11}$")
 
       def validate_each(object, attribute, value)
-        if value.blank?
-          object.errors[attribute] << I18n.translate("activerecord.errors.partita_iva.empty")
-          return
-        end
-        unless value.match(REGEX)
-          object.errors[attribute] << I18n.translate("activerecord.errors.partita_iva.invalid_format")
-          return
-        end
         unless control_code_valid?(value)
-          object.errors[attribute] << I18n.translate("activerecord.errors.partita_iva.invalid_format")
-          return
+          object.errors[attribute] << I18n.t("activerecord.errors.partita_iva.invalid_format")
         end
       end
 
       private
+
       def control_code_valid?(value)
+        return true if value.blank?
+        return false unless value.match(REGEX)
+
         odds, evens = [], []
         value[0..9].split('').map(&:to_i).each_with_index {|e,i| (i+1).odd? ? odds << e : evens << e}
         x = odds.inject(0) { |sum,d| sum + d }
