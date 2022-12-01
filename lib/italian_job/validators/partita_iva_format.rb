@@ -5,7 +5,7 @@ module ActiveModel
 
       def validate_each(object, attribute, value)
         unless control_code_valid?(value)
-          object.errors[attribute] << I18n.t("activerecord.errors.partita_iva.invalid_format")
+          object.errors.add(attribute, message: I18n.t("activerecord.errors.partita_iva.invalid_format"))
         end
       end
 
